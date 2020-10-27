@@ -57,11 +57,11 @@ function notAuthorized() {
 
     if (loginInput.value === '') {
       loginInput.style.border = '1px solid red';
-      notLoginMassage.style.display = 'inline-block';
+      notLoginMassage.classList.add('active');
     }
 
     login = loginInput.value;
-
+    // notLoginMassage.classList.remove('active');
     localStorage.setItem('gloDelivery', login);
 
     toggleModalAuth();

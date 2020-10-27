@@ -451,7 +451,7 @@ button {
     margin: 30px;
 }
 
-.label-auth:first-child {
+.input-text {
     width: 80px;
     display: inline-block;
 }
@@ -463,6 +463,9 @@ button {
     font-size: 13px;
     color: red;
     font-style: italic;
+}
+.active {
+    display: inline-block;
 }
 
 .modal-header {
