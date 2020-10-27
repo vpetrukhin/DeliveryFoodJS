@@ -445,13 +445,24 @@ button {
 }
 
 .label-auth {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     margin: 30px;
 }
 
-.label-auth span {
+.label-auth:first-child {
     width: 80px;
     display: inline-block;
+}
+.not-login-massage {
+    display: none;
+    flex-basis: 100%;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 13px;
+    color: red;
+    font-style: italic;
 }
 
 .modal-header {
