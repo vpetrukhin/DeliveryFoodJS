@@ -109,9 +109,6 @@ function createCardRestorant() {
   cardsRestorants.insertAdjacentHTML('beforeend', card);
 }
 
-createCardRestorant();
-createCardRestorant();
-createCardRestorant();
 
 function createGoodsCard() {
   const cardGood = document.createElement('div');
@@ -166,5 +163,9 @@ logo.addEventListener('click', (e) => {
   restaurants.classList.remove('hide');
   menu.classList.add('hide');
 });
+
+createCardRestorant();
+createCardRestorant();
+createCardRestorant();
 
 checkAuth();
