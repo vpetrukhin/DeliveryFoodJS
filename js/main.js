@@ -10,7 +10,7 @@ const cartButton = document.querySelector("#cart-button"),
   loginInput = document.querySelector('#login'),
   userName = document.querySelector('.user-name'),
   buttonOut = document.querySelector('.button-out'),
-  notLoginMassage = document.querySelector('not-login-massage'),
+  notLoginMassage = document.querySelector('.not-login-massage'),
   cardsRestorants = document.querySelector('.cards-restaurants'),
   containerPromo = document.querySelector('.container-promo'),
   restaurants = document.querySelector('.restaurants'),
@@ -58,11 +58,12 @@ function notAuthorized() {
     if (loginInput.value === '') {
       loginInput.style.border = '1px solid red';
       notLoginMassage.classList.add('active');
+    } else {
+      login = loginInput.value;
+      loginInput.style.border = 'none';
+      notLoginMassage.classList.remove('active');
+      localStorage.setItem('gloDelivery', login);
     }
-
-    login = loginInput.value;
-    // notLoginMassage.classList.remove('active');
-    localStorage.setItem('gloDelivery', login);
 
     toggleModalAuth();
     buttonAuth.removeEventListener('click', toggleModalAuth);
@@ -109,7 +110,6 @@ function createCardRestorant() {
   cardsRestorants.insertAdjacentHTML('beforeend', card);
 }
 
-
 function createGoodsCard() {
   const cardGood = document.createElement('div');
   cardGood.className = 'card';
@@ -139,19 +139,26 @@ function createGoodsCard() {
 }
 
 function openGoods(e) {
-  const target = e.target,
-    restaurant = target.closest('.card-restaurant');
+  const target = e.target;
+    
 
-  if (restaurant) {
-    cardsMenu.textContent = '';
-    containerPromo.classList.add('hide');
-    restaurants.classList.add('hide');
-    menu.classList.remove('hide');
 
-    createGoodsCard();
-    createGoodsCard();
-    createGoodsCard();
+  if (login) {
+    const restaurant = target.closest('.card-restaurant');
+    if (restaurant) {
+      cardsMenu.textContent = '';
+      containerPromo.classList.add('hide');
+      restaurants.classList.add('hide');
+      menu.classList.remove('hide');
+
+      createGoodsCard();
+      createGoodsCard();
+      createGoodsCard();
+    }
+  } else {
+    toggleModalAuth();
   }
+  
 }
 
 cartButton.addEventListener("click", toggleModal);
