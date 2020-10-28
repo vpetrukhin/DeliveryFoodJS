@@ -1,11 +1,5 @@
 'use strict';
 
-
-
-
-
-
-//lesson 1 authorization
 const cartButton = document.querySelector("#cart-button"),
   modal = document.querySelector(".modal"),
   modalClose = document.querySelector(".close"),
