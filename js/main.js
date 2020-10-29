@@ -16,7 +16,8 @@ const cartButton = document.querySelector("#cart-button"),
   restaurants = document.querySelector('.restaurants'),
   menu = document.querySelector('.menu'),
   logo = document.querySelector('.logo'),
-  cardsMenu = document.querySelector('.cards-menu');
+  cardsMenu = document.querySelector('.cards-menu'),
+  sectionHeading = document.querySelector('#menuTitle');
 
 let login = localStorage.getItem('gloDelivery');
 
@@ -127,10 +128,30 @@ function createCardRestorant({
   `;
 
   cardsRestorants.insertAdjacentHTML('beforeend', card);
-  
+  createRestaurantTitle(name, stars, price, kitchen);
 }
 
-function createGoodsCard({ description, id, image, name, price}) {
+function createRestaurantTitle(name, stars, price, kitchen) {
+
+  const title = `
+    <h2 class="section-title restaurant-title">${name}</h2>
+    <div class="card-info">
+      <div class="rating">${stars}</div>
+      <div class="price">От ${price} ₽</div>
+      <div class="category">${kitchen}</div>
+    </div>
+  `;
+
+  sectionHeading.insertAdjacentHTML('afterbegin', title);
+}
+
+function createGoodsCard({
+  description,
+  id,
+  image,
+  name,
+  price
+}) {
   const cardGood = document.createElement('div');
   cardGood.className = 'card';
 
@@ -159,8 +180,6 @@ function createGoodsCard({ description, id, image, name, price}) {
 function openGoods(e) {
   const target = e.target;
 
-
-
   if (login) {
     const restaurant = target.closest('.card-restaurant');
     if (restaurant) {
@@ -175,7 +194,6 @@ function openGoods(e) {
   } else {
     toggleModalAuth();
   }
-
 }
 
 function init() {
@@ -190,7 +208,6 @@ function init() {
   });
 
   getData('../db/partners.json').then((data) => {
-    
     data.forEach(createCardRestorant);
   });
 
